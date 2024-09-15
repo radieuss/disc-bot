@@ -9,6 +9,9 @@ const {
   ButtonStyle,
   ActivityType,
 } = require("discord.js");
+
+const mongoose = require("mongoose");
+
 const eventHandler = require("./handlers/eventHandler");
 
 const client = new Client({
@@ -16,12 +19,24 @@ const client = new Client({
     IntentsBitField.Flags.Guilds,
     IntentsBitField.Flags.GuildMembers,
     IntentsBitField.Flags.GuildMessages,
+    IntentsBitField.Flags.GuildPresences,
     IntentsBitField.Flags.MessageContent,
     IntentsBitField.Flags.GuildVoiceStates,
   ],
 });
 
-eventHandler(client)
+(async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI)
+    console.log("Connected to MongoDB");
+
+    eventHandler(client)
+
+    client.login(process.env.TOKEN)
+  } catch (error) {
+    console.log(error);
+  }
+})();
 
 // const roles = [//can use the managed property instead
 //   {
@@ -165,9 +180,9 @@ eventHandler(client)
 // ]
 
 
-//c.user.tag gives username#____
-//c.user.username gives username
-//c.user.id gives id
+// // c.user.tag gives username#____
+// // c.user.username gives username
+// // c.user.id gives id
 // client.on("ready", async () => {
 //   //c stands for client, but cant redefine it
 //   console.log("DARWIZZYS🐐 ALIVE");
@@ -315,6 +330,3 @@ eventHandler(client)
 //     interaction.reply({ embeds: [embed] });
 //   }
 // });
-
-
-client.login(process.env.TOKEN);
