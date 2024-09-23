@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const {Schema, model} = require('mongoose');
 
+
 const db = mongoose.connection.useDb('disc_bot');
 
-const levelSchema = new Schema({
+const userSchema = new Schema({
     userId: {
         type: String,
         required: true,
@@ -12,15 +13,14 @@ const levelSchema = new Schema({
         type: String,
         required: true,
     },
-    xp: {
+    balance: {
         type: Number,
         default: 0,
     },
-    level: {
-        type: Number,
-        default: 1,
+    lastDaily: {
+        type: Date,
+        required: true,
     },
+})
 
-});
-
-module.exports = db.model('Level', levelSchema);
+module.exports = db.model('User', userSchema);

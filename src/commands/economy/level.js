@@ -112,7 +112,7 @@ module.exports = {
                 break;
         }
 
-        // Draw the black border (slightly larger than the badge)
+        // Draw the border (slightly larger than the badge)
         const borderSize = badgeSize * 0.15; // Size for the black border
         ctx.fillStyle = backgroundColor; // Background color for the border
         ctx.beginPath();
@@ -130,26 +130,54 @@ module.exports = {
         ctx.fillStyle = '#000000';
         ctx.fillText(`${targetUserObj.user.username}`, 700, 200);
 
+        //Display user's level
+        ctx.font = '50px Arial';
+        ctx.fillStyle = '#000000';
+        ctx.fillText(`Level: ${currentLevel}`, 700, 300);
+
+        ctx.font = '80px Arial';
+        ctx.fillStyle = '#000000';
+        ctx.fillText(`${currentXp} / ${requiredXp} XP`, 700, 550);
+
         // Draw the progress bar
-        const progressBarWidth = 800;
+        const progressBarWidth = 1000;
         const progressBarHeight = 50;
         const progressBarX = 700;
         const progressBarY = 400;
+        const progressBarRadius = 25;
 
-        // Background of the progress bar
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
+        ctx.beginPath();
+        
+        //background of progress bar
+        ctx.moveTo(progressBarX + progressBarRadius, progressBarY);
+        ctx.arcTo(progressBarX + progressBarWidth, progressBarY, progressBarX + progressBarWidth, progressBarY + progressBarHeight, progressBarRadius); // Top-right corner
+        ctx.arcTo(progressBarX + progressBarWidth, progressBarY + progressBarHeight, progressBarX, progressBarY + progressBarHeight, progressBarRadius); // Bottom-right corner
+        ctx.arcTo(progressBarX, progressBarY + progressBarHeight, progressBarX, progressBarY, progressBarRadius); // Bottom-left corner
+        ctx.arcTo(progressBarX, progressBarY, progressBarX + progressBarWidth, progressBarY, progressBarRadius); // Back to top-left
+        ctx.closePath();
+        ctx.fillStyle = '#ffffff'; // Fill color
+        ctx.fill();
 
+        // Draw the border if needed
+        ctx.lineWidth = 10;
+        ctx.strokeStyle = '#000000';
+        ctx.stroke();
+
+        ctx.beginPath();
+        
         // Fill the progress bar
         const progressBarFillWidth = (currentXp / requiredXp) * progressBarWidth;
+        const progressBarFillHeight = 40;
+        const progressBarFillY = 405;
+        ctx.moveTo(progressBarX + progressBarRadius, progressBarFillY);
+        ctx.arcTo(progressBarX + progressBarFillWidth, progressBarFillY, progressBarX + progressBarFillWidth, progressBarFillY + progressBarFillHeight, progressBarRadius); // Top-right corner
+        ctx.arcTo(progressBarX + progressBarFillWidth, progressBarFillY + progressBarFillHeight, progressBarX, progressBarFillY + progressBarFillHeight, progressBarRadius); // Bottom-right corner
+        ctx.arcTo(progressBarX, progressBarFillY + progressBarFillHeight, progressBarX, progressBarFillY, progressBarRadius); // Bottom-left corner
+        ctx.arcTo(progressBarX, progressBarFillY, progressBarX + progressBarFillWidth, progressBarFillY, progressBarRadius); // Back to top-left
+        ctx.closePath();
         ctx.fillStyle = '#00ff00'; // Green
-        ctx.fillRect(progressBarX, progressBarY, progressBarFillWidth, progressBarHeight);
+        ctx.fill();
 
-        // Draw a rectangular border around the progress bar
-        const borderColor = '#000000'; // Black border color
-        ctx.lineWidth = 10;
-        ctx.strokeStyle = borderColor;
-        ctx.strokeRect(progressBarX, progressBarY, progressBarWidth, progressBarHeight);
 
         // Create an attachment to send
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'canvas.png' });
