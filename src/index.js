@@ -168,165 +168,164 @@ const client = new Client({
 //   },
 // ]
 
-// let status=[
-//   {
-//     name:'sucking wei qings dick',
-//     type:ActivityType.Custom
-//   },
-//   {
-//     name:'sucking gaybriels dick',
-//     type:ActivityType.Custom
-//   },
-// ]
+let status=[
+  {
+    name:'sucking wei qings dick',
+    type:ActivityType.Custom
+  },
+  {
+    name:'sucking gaybriels dick',
+    type:ActivityType.Custom
+  },
+]
 
 
-// // c.user.tag gives username#____
-// // c.user.username gives username
-// // c.user.id gives id
-// client.on("ready", async () => {
-//   //c stands for client, but cant redefine it
-//   console.log("DARWIZZYS🐐 ALIVE");
-//   // client.guilds.cache.forEach(guild => {
-//   //     const generalChannel = guild.channels.cache.find(channel => channel.name == 'general' && channel.type == 0);
-//   //     if (generalChannel) {
-//   //         generalChannel.send('DARWIZZYS🐐 ALIVE')
-//   //     } else {
-//   //         console.error(`'general' channel not found in ${guild.name}.`);
-//   //     }
-//   // });
+// c.user.tag gives username#____
+// c.user.username gives username
+// c.user.id gives id
+client.on("ready", async () => {
+  //c stands for client, but cant redefine it
+  console.log("DARWIZZYS🐐 ALIVE");
+  // client.guilds.cache.forEach(guild => {
+  //     const generalChannel = guild.channels.cache.find(channel => channel.name == 'general' && channel.type == 0);
+  //     if (generalChannel) {
+  //         generalChannel.send('DARWIZZYS🐐 ALIVE')
+  //     } else {
+  //         console.error(`'general' channel not found in ${guild.name}.`);
+  //     }
+  // });
 
-//   setInterval(()=>{
-//     let random=Math.floor(Math.random() * 10)
-//     if(random>=2){
-//       let randomTwice=Math.floor(Math.random() * twice.length)
-//       client.user.setActivity({  
-//         name:twice[randomTwice].name,
-//         type:ActivityType.Streaming,
-//         url:twice[randomTwice].url
-//       })
-//     }else{
-//       client.user.setActivity(status[random])
-//     }
+  /*setInterval(()=>{
+    let random=Math.floor(Math.random() * 10)
+    if(random>=2){
+      let randomTwice=Math.floor(Math.random() * twice.length)
+      client.user.setActivity({  
+        name:twice[randomTwice].name,
+        type:ActivityType.Streaming,
+        url:twice[randomTwice].url
+      })
+    }else{
+      client.user.setActivity(status[random])
+    }*/
 
-//   }, 60000)
+  }, 60000)
 
-//   //For roles message
-//   // try {
-//   //   const channel = await client.channels.cache.get("1214123252646019072");
-//   //   if (!channel) return;
+  //For roles message
+  // try {
+  //   const channel = await client.channels.cache.get("1214123252646019072");
+  //   if (!channel) return;
 
 
-//   //   const row = new ActionRowBuilder();
+  //   const row = new ActionRowBuilder();
 
-//   //   roles.forEach((role) => {
-//   //     row.components.push(
-//   //       new ButtonBuilder()
-//   //         .setCustomId(role.id)
-//   //         .setLabel(role.label)
-//   //         .setStyle(ButtonStyle.Primary)
-//   //     );
-//   //   });
+  //   roles.forEach((role) => {
+  //     row.components.push(
+  //       new ButtonBuilder()
+  //         .setCustomId(role.id)
+  //         .setLabel(role.label)
+  //         .setStyle(ButtonStyle.Primary)
+  //     );
+  //   });
 
-//   //   await channel.send({
-//   //     content: "Claim role",
-//   //     components: [row],
-//   //   });
-//   // } catch (error) {
-//   //   console.log(error);
-//   // }
-// });
+  //   await channel.send({
+  //     content: "Claim role",
+  //     components: [row],
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
-// client.on("messageCreate", (message) => {
-//   if (message.author.bot || message.system) {
-//     //if bot send msg, do nth
-//     return;
-//   }
-//   if (message.author.username == "antheyuhh") {
-//     //if bot send msg, do nth
-//     message.reply(`Fuck Off ${message.author}`);
-//     return;
-//   }
-//   if (message.content == "hello") {
-//     message.reply("Fuck Off");
-//   } else {
-//     message.reply("DARWIZZYS THE GOAT🐐🐐");
-//   }
-// });
+client.on("messageCreate", (message) => {
+  if (message.author.bot || message.system) {
+    //if bot send msg, do nth
+    return;
+  }
+  if (message.author.username == "antheyuhh") {
+    //if bot send msg, do nth
+    message.reply(`Fuck Off ${message.author}`);
+    return;
+  }
+  if (message.content == "hello") {
+    message.reply("Fuck Off");
+  } else {
+    message.reply("DARWIZZYS THE GOAT🐐🐐");
+  }
+});
 
-// client.on("guildMemberAdd", (member) => {
-//   member.guild.channels.cache
-//     .find((c) => c.name === "general")
-//     .send(`WELCOME OUR NEWEST MEMBER ${member.user} TO THE CCP`);
-// });
+client.on("guildMemberAdd", (member) => {
+  member.guild.channels.cache
+    .find((c) => c.name === "general")
+    .send(`WELCOME OUR NEWEST MEMBER ${member.user} TO THE CCP`);
+});
 
-// client.on("voiceStateUpdate", (oldState, newState) => {
-//   const guild = newState.guild;
-//   const generalChannel = guild.channels.cache.find(
-//     (channel) => channel.name == "ping-call" && channel.type == 0
-//   );
-//   if (!generalChannel) {
-//     console.error(`General text channel not found in ${guild.name}.`);
-//     return;
-//   }
-//   if (oldState.channel !== newState.channel) {
-//     // User joined or left a voice channel
-//     if (oldState.channel) {
-//       generalChannel.send(`WHY YOU LEAVE ${oldState.member}`);
-//     }
-//   }
-// });
+client.on("voiceStateUpdate", (oldState, newState) => {
+  const guild = newState.guild;
+  const generalChannel = guild.channels.cache.find(
+    (channel) => channel.name == "ping-call" && channel.type == 0
+  );
+  if (!generalChannel) {
+    console.error(`General text channel not found in ${guild.name}.`);
+    return;
+  }
+  if (oldState.channel !== newState.channel) {
+    // User joined or left a voice channel
+    if (oldState.channel) {
+      generalChannel.send(`WHY YOU LEAVE ${oldState.member}`);
+    }
+  }
+});
 
-// client.on("interactionCreate", async (interaction) => {
-//   if (interaction.isButton()) {
-//     try {
-//       await interaction.deferReply({ ephemeral: true });
+client.on("interactionCreate", async (interaction) => {
+  if (interaction.isButton()) {
+    try {
+      await interaction.deferReply({ ephemeral: true });
 
-//     const role = interaction.guild.roles.cache.get(interaction.customId);
-//     if (!role) {
-//       interaction.editReply({
-//         content: "I couldn't find that role",
-//       });
-//       return;
-//     }
+    const role = interaction.guild.roles.cache.get(interaction.customId);
+    if (!role) {
+      interaction.editReply({
+        content: "I couldn't find that role",
+      });
+      return;
+    }
 
-//     const hasRole = interaction.member.roles.cache.has(role.id)
+    const hasRole = interaction.member.roles.cache.has(role.id)
 
-//     if(hasRole){
-//       await interaction.member.roles.remove(role);
-//       await interaction.editReply(`The role ${role} has been removed`)
-//     }else{
-//       await interaction.member.roles.add(role);
-//       await interaction.editReply(`The role ${role} has been added`)
-//     }
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
+    if(hasRole){
+      await interaction.member.roles.remove(role);
+      await interaction.editReply(`The role ${role} has been removed`)
+    }else{
+      await interaction.member.roles.add(role);
+      await interaction.editReply(`The role ${role} has been added`)
+    }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-//   if (interaction.commandName === "hi") {
-//     interaction.reply("hey!");
-//   }
-//   if (interaction.commandName === "anthea") {
-//     interaction.reply("anthea is stupid");
-//   }
-//   if (interaction.commandName === "lol") {
-//     interaction.reply("you are not funny");
-//   }
-//   if (interaction.commandName === "add") {
-//     const num1 = interaction.options.get("first-number")?.value;
-//     const num2 = interaction.options.get("second-number")?.value;
-//     interaction.reply(`the sum is ${num1 + num2}`);
-//   }
-//   if (interaction.commandName === "embed") {
-//     const embed = new EmbedBuilder()
-//       .setTitle("Embed Title")
-//       .setDescription("Embed desc")
-//       .setColor("Random")
-//       .addFields(
-//         { name: "Field title", value: "lol", inline: true },
-//         { name: "Field title 2", value: "lol", inline: true }
-//       );
+  if (interaction.commandName === "hi") {
+    interaction.reply("hey!");
+  }
+  if (interaction.commandName === "anthea") {
+    interaction.reply("anthea is stupid");
+  }
+  if (interaction.commandName === "lol") {
+    interaction.reply("you are not funny");
+  }
+  if (interaction.commandName === "add") {
+    const num1 = interaction.options.get("first-number")?.value;
+    const num2 = interaction.options.get("second-number")?.value;
+    interaction.reply(`the sum is ${num1 + num2}`);
+  }
+  if (interaction.commandName === "embed") {
+    const embed = new EmbedBuilder()
+      .setTitle("Embed Title")
+      .setDescription("Embed desc")
+      .setColor("Random")
+      .addFields(
+        { name: "Field title", value: "lol", inline: true },
+        { name: "Field title 2", value: "lol", inline: true }
+      );
 
-//     interaction.reply({ embeds: [embed] });
-//   }
-// });
+    interaction.reply({ embeds: [embed] });
+  }
+});

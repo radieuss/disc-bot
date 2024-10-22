@@ -12,10 +12,6 @@ const commands = [
     description: "not funny",
   },
   {
-    name: "anthea",
-    description: "anthea stpid",
-  },
-  {
     name: "hi",
     description: "wont say hi",
   },
@@ -54,23 +50,25 @@ const commands = [
   {
     name: "embed",
     description: "embed",
-  },
+  }
 ];
 
 const rest = new REST().setToken(process.env.TOKEN);
 
 const slashRegister = async () => {
   try {
-    console.log("Registering slash commands...");
+    console.log(`Registering slash commands...`);
 
     await rest.put(
       Routes.applicationGuildCommands(process.env.BOT_ID, process.env.GUILD_ID),
       { body: commands }
     );
 
-    console.log("Slash commands were registered");
+    console.log(`Slash commands registered`);
   } catch (error) {
     console.log(error);
   }
 };
+
 slashRegister();
+
